@@ -15,6 +15,7 @@ $lab_names = [
 
 
 function research_display( $atts = [], $content = null, $tag = '' ) {
+    global $lab_names;  // Make $lab_names accessible within the function
 
     $atts = array_change_key_case( (array) $atts, CASE_LOWER );
 
@@ -24,48 +25,53 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
         ), $atts, $tag
     );
 
-    echo '<style>
+    $group = strtoupper($wporg_atts['group']);
 
-    </style>';
+    echo '<div class="research-group">';
 
-    $args = array(
-        'post_type'      => 'person',
-        'post_status'    => 'publish',
-        'category_name'  => 'core-faculty',
-    );
+    if (isset($lab_names[$group])) {
+        echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
-    echo 'TEST';
+        $args = array(
+            'post_type'      => 'person',
+            'post_status'    => 'publish',
+            'category_name'  => 'core-faculty',
+        );
 
-    $posts = get_posts($args);
+        $posts = get_posts($args);
 
-    if (!empty($posts)) {
-        foreach ($posts as $post) {
-            setup_postdata($post);
-            $permalink = get_permalink($post);
-            $featured_image = get_the_post_thumbnail($post->ID, 'medium');
-            $job_title = get_field('person_jobtitle', $post->ID);
+        if (!empty($posts)) {
+            echo '<div class="row">';
+            foreach ($posts as $post) {
+                setup_postdata($post);
+                $permalink = get_permalink($post);
+                $featured_image = get_the_post_thumbnail($post->ID, 'medium');
+                $job_title = get_field('person_jobtitle', $post->ID);
 
-            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($wporg_atts['group']) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$wporg_atts['group']]) . '</button>';
-
-            echo '<div class="card-box col-lg-2 col-md-3 col-sm-4 col-6">';
-            echo '<div class="card custom-card">';
-            echo '<a href="' . $permalink . '">';
-            if (!empty($featured_image)) {
-                echo $featured_image;
+                echo '<div class="card-box col-lg-2 col-md-3 col-sm-4 col-6">';
+                echo '<div class="card custom-card">';
+                echo '<a href="' . esc_url($permalink) . '">';
+                if (!empty($featured_image)) {
+                    echo $featured_image;
+                }
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . esc_html(get_the_title($post)) . '</h5>';
+                if (!empty($job_title)) {
+                    echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
+                }
+                echo '</div>';
+                echo '</a>';
+                echo '</div>';
+                echo '</div>';
             }
-            echo '<div class="card-body">';
-            echo '<h5 class="card-title">' . get_the_title($post) . '</h5>';
-            if (!empty($job_title)) {
-                echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
-            }
             echo '</div>';
-            echo '</a>';
-            echo '</div>';
-            echo '</div>';
+            wp_reset_postdata();
+        } else {
+            echo '<p>No posts found.</p>';
         }
-        echo '</div>';
-        wp_reset_postdata();
     } else {
-        echo 'No posts found.';
+        echo '<p>Invalid group specified.</p>';
     }
+
+    echo '</div>'; 
 }
