@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: {{My Project}}
-Description: {{Short project description here}}
+Plugin Name: CREOL Research Groups
+Description: Create dropdown modals for 'Research at CREOL' page
 Version: 0.0.0
 Author: UCF Web Communications
 License: GPL3

@@ -34,6 +34,8 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
         'category_name'  => 'core-faculty',
     );
 
+    echo 'TEST';
+
     $posts = get_posts($args);
 
     if (!empty($posts)) {
