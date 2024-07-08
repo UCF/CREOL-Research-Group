@@ -15,7 +15,7 @@ $lab_names = [
 
 
 function research_display( $atts = [], $content = null, $tag = '' ) {
-    global $lab_names;  // Make $lab_names accessible within the function
+    global $lab_names;
 
     $atts = array_change_key_case( (array) $atts, CASE_LOWER );
 
@@ -26,6 +26,8 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
     );
 
     $group = strtoupper($wporg_atts['group']);
+
+    echo 'TEST';
 
     echo '<div class="research-group">';
 
