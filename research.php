@@ -12,5 +12,6 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
+require_once 'includes/research-layout.php';
 
 add_shortcode( 'research', 'research_display');
