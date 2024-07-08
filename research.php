@@ -11,3 +11,6 @@ GitHub Plugin URI: UCF/{{My-Project}}
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
+
+
+add_shortcode( 'research', 'research_display');
