@@ -42,13 +42,8 @@ function research_display($atts = [], $content = null, $tag = '')
             'post_type' => 'post',
             'post_status' => 'publish',
             'posts_per_page' => -1,
-            'meta_query' => array(
-                array(
-                    'key' => '_group_name',
-                    'value' => $group,
-                    'compare' => '=',
-                ),
-            ),
+            'meta_key'  => '_group_name',
+            'meta_value'    => 'FOL',
         );
 
         $query = new WP_Query($args);
