@@ -14,20 +14,24 @@ $lab_names = [
 ];
 
 
-function research_display( $atts = [], $content = null, $tag = '' ) {
+function research_display($atts = [], $content = null, $tag = '')
+{
     global $lab_names;
 
-    $atts = array_change_key_case( (array) $atts, CASE_LOWER );
+    $atts = array_change_key_case((array) $atts, CASE_LOWER);
 
     $wporg_atts = shortcode_atts(
         array(
-            'group'  => '',
-        ), $atts, $tag
+            'group' => '',
+            'debug' => 'no',
+        ),
+        $atts,
+        $tag
     );
 
     $group = strtoupper($wporg_atts['group']);
 
-    echo 'TEST';
+    ob_start();
 
     echo '<div class="research-group">';
 
@@ -35,27 +39,32 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
         echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
-            'post_type'      => 'person',
-            'post_status'    => 'publish',
-            'category_name'  => 'core-faculty',
-            'meta_query'     => array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'meta_query' => array(
                 array(
-                    'key'     => 'person_group',
-                    'value'   => $group,
+                    'key' => 'group_name',
+                    'value' => $group,
                     'compare' => '=',
                 ),
             ),
         );
 
-        $posts = get_posts($args);
+        $query = new WP_Query($args);
 
-        if (!empty($posts)) {
+        if ($wporg_atts['debug'] === 'yes') {
+            echo "Debug: Query arguments: " . print_r($args, true);
+            echo "Debug: Number of posts found: " . $query->found_posts;
+        }
+
+        if ($query->have_posts()) {
             echo '<div class="row">';
-            foreach ($posts as $post) {
-                setup_postdata($post);
-                $permalink = get_permalink($post);
-                $featured_image = get_the_post_thumbnail($post->ID, 'medium');
-                $job_title = get_field('person_jobtitle', $post->ID);
+            while ($query->have_posts()) {
+                $query->the_post();
+                $permalink = get_permalink();
+                $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
+                $job_title = get_field('person_jobtitle');
 
                 echo '<div class="card-box col-lg-2 col-md-3 col-sm-4 col-6">';
                 echo '<div class="card custom-card">';
@@ -64,7 +73,7 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
                     echo $featured_image;
                 }
                 echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . esc_html(get_the_title($post)) . '</h5>';
+                echo '<h5 class="card-title">' . esc_html(get_the_title()) . '</h5>';
                 if (!empty($job_title)) {
                     echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
                 }
@@ -76,11 +85,13 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
             echo '</div>';
             wp_reset_postdata();
         } else {
-            echo '<p>No posts found.</p>';
+            echo '<p>No people found in this group.</p>';
         }
     } else {
         echo '<p>Invalid group specified.</p>';
     }
 
-    echo '</div>'; 
+    echo '</div>';
+
+    return ob_get_clean();
 }
