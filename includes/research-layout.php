@@ -39,7 +39,6 @@ function research_display($atts = [], $content = null, $tag = '')
         }
         .custom-card {
             border: none;
-            border-radius: 10px;
             background: #ffcc00;
             display: flex;
             align-items: center;
@@ -51,7 +50,6 @@ function research_display($atts = [], $content = null, $tag = '')
             width: 150px;
             height: 150px;
             object-fit: cover;
-            border-radius: 50%;
             margin-right: 20px;
         }
         .custom-card .card-body {
@@ -62,7 +60,8 @@ function research_display($atts = [], $content = null, $tag = '')
             color: #000;
             text-decoration: none;
             font-size: 0.85rem;
-            display: block;
+            display: flex;
+            align-items: center;
         }
         .job-title {
             font-size: 0.85rem;
@@ -103,11 +102,6 @@ function research_display($atts = [], $content = null, $tag = '')
 
         $query = new WP_Query($args);
 
-        if ($wporg_atts['debug'] === 'yes') {
-            echo "Debug: Query arguments: " . print_r($args, true);
-            echo "Debug: Number of posts found: " . $query->found_posts;
-        }
-
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
@@ -115,11 +109,13 @@ function research_display($atts = [], $content = null, $tag = '')
                 $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
                 $job_title = get_field('person_jobtitle');
 
-                echo '<div class="card custom-card">';
+                echo '<div class="custom-card">';
                 echo '<a href="' . esc_url($permalink) . '">';
+                echo '<div class="card-image">';
                 if (!empty($featured_image)) {
                     echo $featured_image;
                 }
+                echo '</div>';
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . esc_html(get_the_title()) . '</h5>';
                 if (!empty($job_title)) {
