@@ -45,6 +45,7 @@ function research_display($atts = [], $content = null, $tag = '')
             padding: 15px;
             margin-bottom: 15px;
             width: 100%;
+            margin-top: 3%;
         }
         .custom-card img {
             width: 150px;
@@ -54,12 +55,12 @@ function research_display($atts = [], $content = null, $tag = '')
         }
         .custom-card .card-body {
             padding-top: 10px;
+            padding-left: 3em;
             width: 100%;
         }
         .custom-card a {
-            color: #000;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
         }
