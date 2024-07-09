@@ -43,7 +43,7 @@ function research_display($atts = [], $content = null, $tag = '')
             'post_status' => 'publish',
             'posts_per_page' => -1,
             'meta_key'  => '_group_name',
-            'meta_value'    => 'FOL',
+            'meta_value'    => 'fol',
         );
 
         $query = new WP_Query($args);
