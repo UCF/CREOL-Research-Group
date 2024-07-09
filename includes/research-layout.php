@@ -60,19 +60,18 @@ function research_display($atts = [], $content = null, $tag = '')
         }
         .custom-card a {
             text-decoration: none;
-            font-size: 0.95rem;
             display: flex;
             align-items: center;
         }
         .job-title {
-            font-size: 0.85rem;
+            font-size: 1.2rem;
             color: #000;
             margin-top: -1em;
             margin-bottom: 0.5em;
             display: block;
         }
         .card-title {
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
         
     </style>';
