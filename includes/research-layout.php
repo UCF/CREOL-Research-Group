@@ -39,11 +39,11 @@ function research_display($atts = [], $content = null, $tag = '')
         echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
-            'post_type' => 'post',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'meta_key'  => '_group_name',
-            'meta_value'    => 'fol',
+            'posts_per_page'    => -1,
+            'post_type'         => 'person',
+            'post_status'       => 'publish',
+            'category_name'     => 'core-faculty',
+            'people_group_name' => 'fol'            
         );
 
         $query = new WP_Query($args);
@@ -80,7 +80,7 @@ function research_display($atts = [], $content = null, $tag = '')
             echo '</div>';
             wp_reset_postdata();
         } else {
-            echo '<p>No people found in this group.</p>';
+            echo '<p>No people found in this group</p>';
         }
     } else {
         echo '<p>Invalid group specified.</p>';
