@@ -38,6 +38,13 @@ function research_display( $atts = [], $content = null, $tag = '' ) {
             'post_type'      => 'person',
             'post_status'    => 'publish',
             'category_name'  => 'core-faculty',
+            'meta_query'     => array(
+                array(
+                    'key'     => 'person_group',
+                    'value'   => $group,
+                    'compare' => '=',
+                ),
+            ),
         );
 
         $posts = get_posts($args);
