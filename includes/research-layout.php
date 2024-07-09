@@ -44,7 +44,7 @@ function research_display($atts = [], $content = null, $tag = '')
             'posts_per_page' => -1,
             'meta_query' => array(
                 array(
-                    'key' => 'group_name',
+                    'key' => '_group_name',
                     'value' => $group,
                     'compare' => '=',
                 ),
