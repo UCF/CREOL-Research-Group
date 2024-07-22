@@ -40,7 +40,6 @@ function research_display($atts = [], $content = null, $tag = '')
         .custom-card {
             border: none;
             background: #ffcc00;
-            display: flex;
             align-items: center;
             padding: 15px;
             margin-bottom: 15px;
