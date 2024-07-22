@@ -125,7 +125,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
                 $job_title = get_field('person_jobtitle');
 
-                if ($wporgs_atts['inverse'] == '')
+                if ($inverse == '')
                     echo '<div class="custom-card collapse i" id="' . esc_attr($group) . '">';
                 else
                     echo '<div class="custom-card collapse" id="' . esc_attr($group) . '">';    
