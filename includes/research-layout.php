@@ -27,6 +27,7 @@ function research_display($atts = [], $content = null, $tag = '')
         array(
             'group' => '',
             'debug' => 'no',
+            'inverse' => ''
         ),
         $atts,
         $tag
@@ -38,16 +39,22 @@ function research_display($atts = [], $content = null, $tag = '')
 
     echo '<style>
         .section-title {
-            border-bottom: 3px solid #ffcc00;
+            border-bottom: 3px solid #f7f7f7;
         }
         .custom-card {
             border: none;
-            background: #ffcc00;
+            background: #f7f7f7;
             align-items: center;
             padding: 15px;
             margin-bottom: 15px;
             width: 100%;
             margin-top: 3%;
+        }
+        .section-title.i {
+            border-bottom: 3px solid #ffcc00;
+        }
+        .custom-card.i {
+            background: #ffcc00;
         }
         .custom-card img {
             width: 150px;
@@ -82,7 +89,10 @@ function research_display($atts = [], $content = null, $tag = '')
     echo '<div class="research-group">';
 
     if (isset($lab_names[$group])) {
-        echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+        if ($wporgs_atts['inverse'] == '')
+            echo '<button class="btn btn-outline-i-primary btn-block i" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+        else
+            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
