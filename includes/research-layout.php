@@ -114,7 +114,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
                 $job_title = get_field('person_jobtitle');
 
-                echo '<div class="custom-card" id="#' . esc_attr($group) . '">';
+                echo '<div class="custom-card" id="' . esc_attr($group) . '">';
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
                 if (!empty($featured_image)) {
