@@ -10,6 +10,9 @@ $lab_names = [
     'UP' => 'Ultrafast Photonics',
     'LPL' => 'Laser Plasma Laboratory',
     'MOF' => 'Microstructured Fibers and Devices',
+    'NLO' => 'Nonlinear Optics',
+    'PPL' => 'Photoinduced Processing',
+    'ULP' => 'Ultrafast Laser Processing',
 
 ];
 
@@ -134,20 +137,6 @@ function research_display($atts = [], $content = null, $tag = '')
     }
 
     echo '</div>';
-
-    echo '<script>
-        // // Selecting all sections with class of custom-card
-        // const groups = document.querySelectorAll(".research-group")
-
-        // // On click event for each section 
-        // groups.forEach((group)=>{
-        //     group.addEventListener("click",()=>{
-        //         // On click, toggle the active class
-        //         card.classList.toggle("active")
-        //     })
-        // })
-
-    </script>';
 
     return ob_get_clean();
 }
