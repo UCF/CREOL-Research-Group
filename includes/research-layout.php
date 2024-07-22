@@ -98,7 +98,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 array(
                     'taxonomy' => 'people_group',
                     'field'    => 'slug',
-                    'terms'    => 'fol',
+                    'terms'    => 'fol, gpcl',
                 ),
             ),
         );
