@@ -39,7 +39,7 @@ function research_display($atts = [], $content = null, $tag = '')
 
     echo '<style>
         .section-title {
-            border-bottom: 3px solid #f7f7f7;
+            border-bottom: 3px solid #ffcc00;
         }
         .custom-card {
             border: none;
@@ -49,9 +49,6 @@ function research_display($atts = [], $content = null, $tag = '')
             margin-bottom: 15px;
             width: 100%;
             margin-top: 3%;
-        }
-        .section-title.i {
-            border-bottom: 3px solid #ffcc00;
         }
         .custom-card.i {
             background: #ffcc00;
@@ -90,7 +87,7 @@ function research_display($atts = [], $content = null, $tag = '')
 
     if (isset($lab_names[$group])) {
         if ($wporgs_atts['inverse'] == '')
-            echo '<button class="btn btn-outline-i-primary btn-block i" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
             echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
@@ -122,7 +119,11 @@ function research_display($atts = [], $content = null, $tag = '')
                 $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
                 $job_title = get_field('person_jobtitle');
 
-                echo '<div class="custom-card collapse" id="' . esc_attr($group) . '">';
+                if ($wporgs_atts['inverse'] == '')
+                    echo '<div class="custom-card collapse i" id="' . esc_attr($group) . '">';
+                else
+                    echo '<div class="custom-card collapse" id="' . esc_attr($group) . '">';    
+
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
                 if (!empty($featured_image)) {
