@@ -34,6 +34,7 @@ function research_display($atts = [], $content = null, $tag = '')
     );
 
     $group = strtoupper($wporg_atts['group']);
+    $inverse = strtoupper($wporg_atts['inverse']);
 
     ob_start();
 
