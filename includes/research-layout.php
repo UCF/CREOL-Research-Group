@@ -114,7 +114,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
                 $job_title = get_field('person_jobtitle');
 
-                echo '<div class="custom-card">';
+                echo '<div class="custom-card" id="#' . esc_attr($group) . '">';
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
                 if (!empty($featured_image)) {
@@ -141,16 +141,16 @@ function research_display($atts = [], $content = null, $tag = '')
     echo '</div>';
 
     echo '<script>
-        // Selecting all sections with class of custom-card
-        const cards = document.querySelectorAll(".custom-card")
+        // // Selecting all sections with class of custom-card
+        // const groups = document.querySelectorAll(".research-group")
 
-        // On click event for each section 
-        cards.forEach((card)=>{
-            card.addEventListener("click",()=>{
-                // On click, toggle the active class
-                card.classList.toggle("active")
-            })
-        })
+        // // On click event for each section 
+        // groups.forEach((group)=>{
+        //     group.addEventListener("click",()=>{
+        //         // On click, toggle the active class
+        //         card.classList.toggle("active")
+        //     })
+        // })
 
     </script>';
 
