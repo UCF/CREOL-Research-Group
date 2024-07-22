@@ -3,7 +3,7 @@
 $lab_names = [
     'FOL' => 'Fiber Optics',
     'GPCL' => 'Glass Processing Lab',
-    'LAMO' => 'Laser-Advanced Manufacturing',
+    'LAMP' => 'Laser-Advanced Manufacturing',
     'MIR' => 'Mid-Infared Combs Group',
     'OC' => 'Optical Ceramics',
     'SDL' => 'Semiconductor Diode Lasers',
@@ -40,7 +40,7 @@ function research_display($atts = [], $content = null, $tag = '')
         .custom-card {
             border: none;
             background: #ffcc00;
-            display: flex;
+            display: none;
             align-items: center;
             padding: 15px;
             margin-bottom: 15px;
@@ -73,6 +73,11 @@ function research_display($atts = [], $content = null, $tag = '')
         .card-title {
             font-size: 1.2rem;
         }
+
+        .custom-card.active {
+            display: flex;
+        }
+
         
     </style>';
 
@@ -134,6 +139,20 @@ function research_display($atts = [], $content = null, $tag = '')
     }
 
     echo '</div>';
+
+    echo '<script>
+        // Selecting all sections with class of custom-card
+        const cards = document.querySelectorAll(".custom-card")
+
+        // On click event for each section 
+        cards.forEach((card)=>{
+            card.addEventListener("click",()=>{
+                // On click, toggle the active class
+                card.classList.toggle("active")
+            })
+        })
+
+    </script>';
 
     return ob_get_clean();
 }
