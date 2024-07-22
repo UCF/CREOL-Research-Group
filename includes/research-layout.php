@@ -92,7 +92,7 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log(' . $inverse . ' + " var")
             console.log("Logged")
         </script>';
-        if ($wporgs_atts['inverse'] == '')
+        if ($inverse == '')
             echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
             echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
