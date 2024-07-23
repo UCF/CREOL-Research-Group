@@ -37,6 +37,7 @@ function research_display($atts = [], $content = null, $tag = '')
     $group = strtoupper($arr[0]);
     $id = ($arr[1]);
     echo '<script> 
+        console.log("wporg group: " +  ' . $wporg_atts['group'] . ') 
         console.log("group: " +  ' . $group . ' + " id: " + ' . $id . ') 
     </script>';
     // echo '<script>
@@ -97,11 +98,6 @@ function research_display($atts = [], $content = null, $tag = '')
     echo '<div class="research-group">';
 
     if (isset($lab_names[$group])) {
-        echo '<script>
-            // console.log(' . $wporgs_atts['inverse'] . ' + " wporgs")
-            console.log(' . $inverse . ' + " var")
-            console.log("Logged")
-        </script>';
         if ($inverse == '')
             echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
