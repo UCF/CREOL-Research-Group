@@ -8,12 +8,15 @@ $lab_names = [
     'OC' => 'Optical Ceramics',
     'SDL' => 'Semiconductor Diode Lasers',
     'UP' => 'Ultrafast Photonics',
+    'ATTOSECOND' => 'Florida Attosecond Science & Technology',
     'LPL' => 'Laser Plasma Laboratory',
     'MOF' => 'Microstructured Fibers and Devices',
     'NLO' => 'Nonlinear Optics',
     'PPL' => 'Photoinduced Processing',
     'ULP' => 'Ultrafast Laser Processing',
-
+    'MFD' => 'Microstructured Fibers and Devices',
+    'OFC' => 'Optical Fiber Communications',
+    'MOFD' => 'Multi-material Optical Fiber Devices',
 ];
 
 
