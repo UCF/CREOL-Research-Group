@@ -115,7 +115,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 array(
                     'taxonomy' => 'people_group',
                     'field'    => 'slug',
-                    'terms'    => $wporg_atts['group'],
+                    'terms'    => $group,
                 ),
             ),
         );
