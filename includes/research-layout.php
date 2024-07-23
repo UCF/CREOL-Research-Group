@@ -33,6 +33,7 @@ function research_display($atts = [], $content = null, $tag = '')
         $tag
     );
     
+    $inverse = $wporg_atts['inverse'];
     $arr = explode(' ', $wporg_atts['group']);
     $group = strtoupper($arr[0]);
     $id = ($arr[1]);
@@ -40,12 +41,6 @@ function research_display($atts = [], $content = null, $tag = '')
         console.log("wporg group: " +  ' . $wporg_atts['group'] . ') 
         console.log("group: " +  ' . $group . ' + " id: " + ' . $id . ') 
     </script>';
-    // echo '<script>
-    //     // console.log(' . $wporgs_atts['inverse'] . ' + " wporgs")
-    //     console.log(' . $inverse . ' + " var")
-    //     console.log("Logged")
-    // </script>';
-    $inverse = $wporg_atts['inverse'];
 
     ob_start();
 
