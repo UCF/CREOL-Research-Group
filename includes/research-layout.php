@@ -33,10 +33,10 @@ function research_display($atts = [], $content = null, $tag = '')
         $tag
     );
 
-    $pieces = explode(" ", $wporg_atts['group']);
+    $arr = explode(" ", $wporg_atts['group']);
 
-    $group = strtoupper($pieces[0]);
-    $other = $pieces[1];
+    $group = strtoupper($arr[0]);
+    $section = $arr[1];
     $inverse = $wporg_atts['inverse'];
 
     ob_start();
@@ -91,16 +91,15 @@ function research_display($atts = [], $content = null, $tag = '')
 
     if (isset($lab_names[$group])) {
         echo '<script>
-            // console.log(' . $wporgs_atts['inverse'] . ' + " wporgs")
             console.log(' . json_encode($inverse) . ' + " inverse")
             console.log(' . json_encode($group) . ' + " group")
-            console.log(' . json_encode($other) . ' + " other")
+            console.log(' . json_encode($section) . ' + " section")
             console.log("Logged")
         </script>';
         if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
-            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
@@ -131,9 +130,9 @@ function research_display($atts = [], $content = null, $tag = '')
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
-                    echo '<div class="custom-card collapse i" id="' . esc_attr($group) . '">';
+                    echo '<div class="custom-card collapse i" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="custom-card collapse" id="' . esc_attr($group) . '">';    
+                    echo '<div class="custom-card collapse" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
 
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
