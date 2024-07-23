@@ -39,11 +39,11 @@ function research_display($atts = [], $content = null, $tag = '')
     echo '<script> 
         console.log("group: " +  ' . $group . ' + " id: " + ' . $id . ') 
     </script>';
-    echo '<script>
-        // console.log(' . $wporgs_atts['inverse'] . ' + " wporgs")
-        console.log(' . $inverse . ' + " var")
-        console.log("Logged")
-    </script>';
+    // echo '<script>
+    //     // console.log(' . $wporgs_atts['inverse'] . ' + " wporgs")
+    //     console.log(' . $inverse . ' + " var")
+    //     console.log("Logged")
+    // </script>';
     $inverse = $wporg_atts['inverse'];
 
     ob_start();
