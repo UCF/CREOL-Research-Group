@@ -16,7 +16,7 @@ $lab_names = [
     'ULP' => 'Ultrafast Laser Processing',
     'MFD' => 'Microstructured Fibers and Devices',
     'OFC' => 'Optical Fiber Communications',
-    'MultiOFD' => 'Multi-material Optical Fiber Devices',
+    'MULTIOFD' => 'Multi-material Optical Fiber Devices',
 ];
 
 
