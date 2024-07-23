@@ -36,7 +36,7 @@ function research_display($atts = [], $content = null, $tag = '')
     $arr = explode(' ', $wporg_atts['group']);
     $group = strtoupper($arr[0]);
     $id = ($arr[1]);
-    echo '<script> console.log("group: " + $group + " id: " + $id) </script>';
+    echo '<script> console.log("group: " +  " . esc_attr($group) . " + " id: " + " . esc_attr($id) . ") </script>';
     $inverse = $wporg_atts['inverse'];
 
     ob_start();
