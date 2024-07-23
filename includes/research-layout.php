@@ -89,7 +89,8 @@ function research_display($atts = [], $content = null, $tag = '')
     if (isset($lab_names[$group])) {
         echo '<script>
             // console.log(' . $wporgs_atts['inverse'] . ' + " wporgs")
-            console.log(' . $inverse . ' + " var")
+            console.log(' . $inverse . ' + " inverse")
+            console.log(' . $group . ' + " group")
             console.log("Logged")
         </script>';
         if ($inverse == '')
