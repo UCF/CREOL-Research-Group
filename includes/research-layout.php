@@ -38,9 +38,10 @@ function research_display($atts = [], $content = null, $tag = '')
     $group = strtoupper($arr[0]);
     $id = ($arr[1]);
     echo '<script> 
-        console.log("wporg group: " +  ' . $wporg_atts["group"] . ')
-        console.log("group: " +  ' . $group . ' + " id: " + ' . $id . ')
+        console.log("wporg group: " + ' . json_encode($wporg_atts['group']) . '); 
+        console.log("group: " + ' . json_encode($group) . ' + " id: " + ' . json_encode($id) . '); 
     </script>';
+
 
     ob_start();
 
