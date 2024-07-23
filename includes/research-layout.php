@@ -16,7 +16,7 @@ $lab_names = [
     'ULP' => 'Ultrafast Laser Processing',
     'MFD' => 'Microstructured Fibers and Devices',
     'OFC' => 'Optical Fiber Communications',
-    'MOFD' => 'Multi-material Optical Fiber Devices',
+    'MultiOFD' => 'Multi-material Optical Fiber Devices',
 ];
 
 
@@ -154,7 +154,7 @@ function research_display($atts = [], $content = null, $tag = '')
             }
             wp_reset_postdata();
         } else {
-            echo '<p>No people found in this </p>';
+            echo '<p></p>';
         }
     } else {
         echo '<p>Invalid group specified.</p>';
