@@ -1,5 +1,6 @@
 <?php
 
+// These are pulled from WordPress -> People -> People Groups
 $lab_names = [
     'FOL' => 'Fiber Optics',
     'GPCL' => 'Glass Processing Lab',
@@ -8,17 +9,28 @@ $lab_names = [
     'OC' => 'Optical Ceramics',
     'SDL' => 'Semiconductor Diode Lasers',
     'UP' => 'Ultrafast Photonics',
-    'ATTOSECOND' => 'Florida Attosecond Science & Technology',
+    'FAST' => 'Florida Attosecond Science & Technology',
     'LPL' => 'Laser Plasma Laboratory',
     'MOF' => 'Microstructured Fibers and Devices',
     'NLO' => 'Nonlinear Optics',
     'PPL' => 'Photoinduced Processing',
     'ULP' => 'Ultrafast Laser Processing',
-    'MFD' => 'Microstructured Fibers and Devices',
     'OFC' => 'Optical Fiber Communications',
     'MULTIOFD' => 'Multi-material Optical Fiber Devices',
+    'IPES' => 'Integrated Photonic Emerging Solutions',
+    'NPM' => 'Nanophotonic Materials Group',
+    'BLANCO-REDONDO' => 'Quantum Silicone Photonics',
+    'TAS' => 'Theoretical Attosecond Spectroscopiesy',
+    'MQW' => 'Multiple Quantum Wells',
+    'KIK' => 'Nanophotonics & Near-Field Optics',
+    'KVL' => 'Knight Vision Lab',
+    'LCD' => 'Liquid Crystal Displays',
+    'NPD' => 'Nanophotonics Device',
+    'PSD' => 'Photonic Structures & Devices',
+    'NANOSCOPY' => 'Optical Nanoscopy',
+    'OISL' => 'Optical Imaging System Laboratory',
+    'SALEH' => 'Quantum Optics',
 ];
-
 
 function research_display($atts = [], $content = null, $tag = '')
 {
