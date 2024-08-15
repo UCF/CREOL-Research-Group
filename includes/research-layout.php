@@ -61,15 +61,15 @@ function research_display($atts = [], $content = null, $tag = '')
         // .section-title {
         //     border-bottom: 3px solid #ffcc00;
         // }
-        // .custom-card {
+        .custom-card {
         //     border: none;
         //     background: #f7f7f7;
-        //     align-items: center;
+            align-items: center;
         //     padding: 15px;
         //     margin-bottom: 15px;
         //     width: 100%;
         //     margin-top: 3%;
-        // }
+        }
         // .custom-card.i {
         //     background: #ffcc00;
         // }
@@ -89,13 +89,13 @@ function research_display($atts = [], $content = null, $tag = '')
         //     display: flex;
         //     align-items: center;
         // }
-        // .job-title {
-        //     font-size: 1.2rem;
-        //     color: #000;
-        //     margin-top: -1em;
-        //     margin-bottom: 0.5em;
-        //     display: block;
-        // }
+        .job-title {
+            font-size: 1.2rem;
+            color: #000;
+            margin-top: -1em;
+            margin-bottom: 0.5em;
+            display: block;
+        }
         .card-title {
             font-size: 1.2rem;
         }
