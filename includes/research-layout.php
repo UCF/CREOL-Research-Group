@@ -57,7 +57,12 @@ function research_display($atts = [], $content = null, $tag = '')
 
     ob_start();
 
-    // echo '<style>
+    echo '<style>
+        .custom-card.collapse {
+            transition: none !important; /* Disable transitions */
+            margin: 0; /* Ensure no margin changes on collapse */
+            padding: 0; /* Ensure no padding changes on collapse */
+        }
     //     .section-title {
     //         border-bottom: 3px solid #ffcc00;
     //     }
@@ -101,7 +106,7 @@ function research_display($atts = [], $content = null, $tag = '')
     //     }
 
         
-    // </style>';
+    </style>';
 
     echo '<div class="research-group">';
 
