@@ -96,9 +96,9 @@ function research_display($atts = [], $content = null, $tag = '')
         //     margin-bottom: 0.5em;
         //     display: block;
         // }
-        // .card-title {
-        //     font-size: 1.2rem;
-        // }
+        .card-title {
+            font-size: 1.2rem;
+        }
 
         
     </style>';
