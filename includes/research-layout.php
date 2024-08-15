@@ -122,11 +122,12 @@ function research_display($atts = [], $content = null, $tag = '')
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
-                    echo '<div class="custom-card collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="custom-card collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+                    echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
 
                 echo '<a href="' . esc_url($permalink) . '">';
+                echo '<div class="custom-card">';
                 echo '<div class="card-image">';
                 if (!empty($featured_image)) {
                     echo $featured_image;
@@ -139,6 +140,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 }
                 echo '</div>';
                 echo '</a>';
+                echo '</div>';
                 echo '</div>';
             }
             wp_reset_postdata();
