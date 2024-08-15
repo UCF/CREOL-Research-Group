@@ -70,11 +70,17 @@ function research_display($atts = [], $content = null, $tag = '')
             height: 150px;
             object-fit: cover;
         }
-        .job-title {
-            color: #000;
+        .card-body {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .card-title {
-            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        .job-title {
+            color: #000;
         }
 
         
