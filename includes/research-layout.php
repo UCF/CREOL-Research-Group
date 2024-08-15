@@ -96,9 +96,9 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log("Logged")
         </script>';
         if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block mb-4" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
-            echo '<button class="btn btn-outline-primary btn-block mb-4" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
@@ -129,9 +129,9 @@ function research_display($atts = [], $content = null, $tag = '')
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
-                    echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    echo '<div class="collapse bg-primary mt-4" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+                    echo '<div class="collapse bg-faded mt-4" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
 
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="custom-card">';
