@@ -58,43 +58,18 @@ function research_display($atts = [], $content = null, $tag = '')
     ob_start();
 
     echo '<style>
-        // .section-title {
-        //     border-bottom: 3px solid #ffcc00;
-        // }
         .custom-card {
-        //     border: none;
-        //     background: #f7f7f7;
-        //     align-items: center;
-        //     padding: 15px;
-        //     margin-bottom: 15px;
-        //     width: 100%;
-        //     margin-top: 3%;
         }
-        // .custom-card.i {
-        //     background: #ffcc00;
-        // }
-        // .custom-card img {
-        //     width: 150px;
-        //     height: 150px;
-        //     object-fit: cover;
-        //     margin-right: 20px;
-        // }
-        // .custom-card .card-body {
-        //     padding-top: 10px;
-        //     padding-left: 3em;
-        //     width: 100%;
-        // }
-        // .custom-card a {
-        //     text-decoration: none;
-        //     display: flex;
-        //     align-items: center;
-        // }
+        .card-image {
+            padding: 10px
+        }
+        .card-image img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
         .job-title {
-        //     font-size: 1.2rem;
             color: #000;
-        //     margin-top: -1em;
-        //     margin-bottom: 0.5em;
-        //     display: block;
         }
         .card-title {
             font-size: 1.2rem;
@@ -113,9 +88,9 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log("Logged")
         </script>';
         if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block mb-2" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-i-primary btn-block mb-3" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
-            echo '<button class="btn btn-outline-primary btn-block mb-2" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-primary btn-block mb-3" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
