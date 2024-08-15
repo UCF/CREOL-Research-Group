@@ -146,9 +146,9 @@ function research_display($atts = [], $content = null, $tag = '')
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
-                    echo '<div class="custom-card collapse i" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    echo '<div class="custom-card collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="custom-card collapse" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+                    echo '<div class="custom-card collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
 
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
