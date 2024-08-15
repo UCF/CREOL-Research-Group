@@ -58,6 +58,9 @@ function research_display($atts = [], $content = null, $tag = '')
     ob_start();
 
     echo '<style>
+        .btn:not(.collapsed) {
+            margin-bottom: 16px; /* Larger margin when expanded */
+        }
         .custom-card {
             display: flex;
             width: 100%;
@@ -129,9 +132,9 @@ function research_display($atts = [], $content = null, $tag = '')
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
-                    echo '<div class="collapse bg-primary mt-4" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="collapse bg-faded mt-4" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+                    echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
 
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="custom-card">';
