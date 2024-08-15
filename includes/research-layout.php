@@ -60,6 +60,7 @@ function research_display($atts = [], $content = null, $tag = '')
     echo '<style>
         .custom-card {
             display: flex;
+            width: 100%;
         }
         .card-image {
             padding: 10px;
@@ -139,8 +140,8 @@ function research_display($atts = [], $content = null, $tag = '')
                     echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
                 }
                 echo '</div>';
-                echo '</a>';
                 echo '</div>';
+                echo '</a>';
                 echo '</div>';
             }
             wp_reset_postdata();
