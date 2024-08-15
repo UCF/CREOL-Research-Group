@@ -58,8 +58,8 @@ function research_display($atts = [], $content = null, $tag = '')
     ob_start();
 
     echo '<style>
-        .btn:not(.collapsed) {
-            margin-bottom: 16px; /* Larger margin when expanded */
+        .group-btn:not(.collapsed) {
+            margin-bottom: 16px; /* Larger margin when expanding/expanded */
         }
         .custom-card {
             display: flex;
@@ -99,9 +99,9 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log("Logged")
         </script>';
         if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn group-btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
-            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn group-btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
