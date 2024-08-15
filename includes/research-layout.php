@@ -57,12 +57,7 @@ function research_display($atts = [], $content = null, $tag = '')
 
     ob_start();
 
-    echo '<style>
-        .custom-card.collapse {
-            transition: none !important; /* Disable transitions */
-            margin: 0; /* Ensure no margin changes on collapse */
-            padding: 0; /* Ensure no padding changes on collapse */
-        }
+    // echo '<style>
     //     .section-title {
     //         border-bottom: 3px solid #ffcc00;
     //     }
@@ -106,7 +101,7 @@ function research_display($atts = [], $content = null, $tag = '')
     //     }
 
         
-    </style>';
+    // </style>';
 
     echo '<div class="research-group">';
 
@@ -117,10 +112,9 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log(' . json_encode($section) . ' + " section")
             console.log("Logged")
         </script>';
-        if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="false" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
-        else
-            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="false" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+        
+        $btn_class = $inverse == '' ? 'btn-outline-i-primary' : 'btn-outline-primary';
+        echo '<button class="btn ' . $btn_class . ' btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="false" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
@@ -144,17 +138,14 @@ function research_display($atts = [], $content = null, $tag = '')
         $query = new WP_Query($args);
 
         if ($query->have_posts()) {
+            echo '<div class="collapse ' . ($inverse == '' ? 'i' : '') . '" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
             while ($query->have_posts()) {
                 $query->the_post();
                 $permalink = get_permalink();
                 $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
                 $job_title = get_field('person_jobtitle');
 
-                if ($inverse == '')
-                    echo '<div class="collapse i" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
-                else
-                    echo '<div class="collapse" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
-                echo '<div class="card card-block">';
+                echo '<div class="card">';
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
                 if (!empty($featured_image)) {
@@ -169,11 +160,11 @@ function research_display($atts = [], $content = null, $tag = '')
                 echo '</div>';
                 echo '</a>';
                 echo '</div>';
-                echo '</div>';
             }
+            echo '</div>';
             wp_reset_postdata();
         } else {
-            echo '<p></p>';
+            echo '<p>No posts found.</p>';
         }
     } else {
         echo '<p>Invalid group specified.</p>';
@@ -183,3 +174,4 @@ function research_display($atts = [], $content = null, $tag = '')
 
     return ob_get_clean();
 }
+?>
