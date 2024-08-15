@@ -64,7 +64,7 @@ function research_display($atts = [], $content = null, $tag = '')
         .custom-card {
         //     border: none;
         //     background: #f7f7f7;
-            align-items: center;
+        //     align-items: center;
         //     padding: 15px;
         //     margin-bottom: 15px;
         //     width: 100%;
@@ -90,11 +90,11 @@ function research_display($atts = [], $content = null, $tag = '')
         //     align-items: center;
         // }
         .job-title {
-            font-size: 1.2rem;
+        //     font-size: 1.2rem;
             color: #000;
-            margin-top: -1em;
-            margin-bottom: 0.5em;
-            display: block;
+        //     margin-top: -1em;
+        //     margin-bottom: 0.5em;
+        //     display: block;
         }
         .card-title {
             font-size: 1.2rem;
@@ -113,9 +113,9 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log("Logged")
         </script>';
         if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-i-primary btn-block mb-2" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
-            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-primary btn-block mb-2" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
