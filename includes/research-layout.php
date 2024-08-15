@@ -113,9 +113,9 @@ function research_display($atts = [], $content = null, $tag = '')
             console.log("Logged")
         </script>';
         if ($inverse == '')
-            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-i-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="false" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
         else
-            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            echo '<button class="btn btn-outline-primary btn-block" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="false" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
         $args = array(
             'posts_per_page' => -1,
@@ -146,10 +146,10 @@ function research_display($atts = [], $content = null, $tag = '')
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
-                    echo '<div class="custom-card collapse i" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    echo '<div class="collapse i" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="custom-card collapse" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
-
+                    echo '<div class="collapse" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+                echo '<div class="card card-block">';
                 echo '<a href="' . esc_url($permalink) . '">';
                 echo '<div class="card-image">';
                 if (!empty($featured_image)) {
@@ -163,6 +163,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 }
                 echo '</div>';
                 echo '</a>';
+                echo '</div>';
                 echo '</div>';
             }
             wp_reset_postdata();
