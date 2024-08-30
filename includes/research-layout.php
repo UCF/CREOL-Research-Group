@@ -1,3 +1,4 @@
+<!-- research-layout.php -->
 <?php
 
 // These are pulled from WordPress -> People -> People Groups
@@ -128,7 +129,7 @@ function research_display($atts = [], $content = null, $tag = '')
             while ($query->have_posts()) {
                 $query->the_post();
                 $permalink = get_permalink();
-                $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium');
+                $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy']);
                 $job_title = get_field('person_jobtitle');
 
                 if ($inverse == '')
