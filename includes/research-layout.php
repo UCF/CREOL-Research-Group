@@ -56,6 +56,8 @@ function research_display($atts = [], $content = null, $tag = '')
     $section = $arr[1];
     $inverse = $wporg_atts['inverse'];
 
+    $groups_and_sections = explode(',', $atts['group']);
+
     ob_start();
 
     echo '<style>
@@ -85,82 +87,145 @@ function research_display($atts = [], $content = null, $tag = '')
         }
         .job-title {
             color: #000;
-        }
-
-        
+        }        
     </style>';
 
     echo '<div class="research-group">';
 
-    if (isset($lab_names[$group])) {
-        echo '<script>
-            console.log(' . json_encode($inverse) . ' + " inverse")
-            console.log(' . json_encode($group) . ' + " group")
-            console.log(' . json_encode($section) . ' + " section")
-            console.log("Logged")
-        </script>';
-        if ($inverse == '')
-            echo '<button class="btn group-btn btn-outline-i-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
-        else
-            echo '<button class="btn group-btn btn-outline-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+    foreach ($groups_and_sections as $item) {
+        list($group, $section) = explode(" ", trim($item));
+        $group = strtoupper($group);
 
-        $args = array(
-            'posts_per_page' => -1,
-            'post_type'      => 'person',
-            'post_status'    => 'publish',
-            'tax_query'      => array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => 'category',
-                    'field'    => 'slug',
-                    'terms'    => 'core-faculty',
+        if (isset($lab_names[$group])) {
+            if ($inverse == '')
+                echo '<button class="btn group-btn btn-outline-i-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+            else
+                echo '<button class="btn group-btn btn-outline-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+
+            $args = array(
+                'posts_per_page' => -1,
+                'post_type'      => 'person',
+                'post_status'    => 'publish',
+                'tax_query'      => array(
+                    'relation' => 'AND',
+                    array(
+                        'taxonomy' => 'category',
+                        'field'    => 'slug',
+                        'terms'    => 'core-faculty',
+                    ),
+                    array(
+                        'taxonomy' => 'people_group',
+                        'field'    => 'slug',
+                        'terms'    => $group,
+                    ),
                 ),
-                array(
-                    'taxonomy' => 'people_group',
-                    'field'    => 'slug',
-                    'terms'    => $group,
-                ),
-            ),
-        );
+            );
 
-        $query = new WP_Query($args);
+            $query = new WP_Query($args);
+            
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    $permalink = get_permalink();
+                    $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy']);
+                    $job_title = get_field('person_jobtitle');
 
-        if ($query->have_posts()) {
-            while ($query->have_posts()) {
-                $query->the_post();
-                $permalink = get_permalink();
-                $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy']);
-                $job_title = get_field('person_jobtitle');
+                    if ($inverse == '')
+                        echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    else
+                        echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
 
-                if ($inverse == '')
-                    echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
-                else
-                    echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
-
-                echo '<a href="' . esc_url($permalink) . '">';
-                echo '<div class="custom-card">';
-                echo '<div class="card-image">';
-                if (!empty($featured_image)) {
-                    echo $featured_image;
+                    echo '<a href="' . esc_url($permalink) . '">';
+                    echo '<div class="custom-card">';
+                    echo '<div class="card-image">';
+                    if (!empty($featured_image)) {
+                        echo $featured_image;
+                    }
+                    echo '</div>';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">' . esc_html(get_the_title()) . '</h5>';
+                    if (!empty($job_title)) {
+                        echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
+                    }
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</a>';
+                    echo '</div>';
                 }
-                echo '</div>';
-                echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . esc_html(get_the_title()) . '</h5>';
-                if (!empty($job_title)) {
-                    echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
-                }
-                echo '</div>';
-                echo '</div>';
-                echo '</a>';
-                echo '</div>';
+                wp_reset_postdata();
+            } else {
+                echo '<p></p>';
             }
-            wp_reset_postdata();
+
         } else {
-            echo '<p></p>';
+            echo '<p>Invalid group specified.</p>';
         }
-    } else {
-        echo '<p>Invalid group specified.</p>';
+        
     }
+
+    // if (isset($lab_names[$group])) {
+    //     if ($inverse == '')
+    //         echo '<button class="btn group-btn btn-outline-i-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+    //     else
+    //         echo '<button class="btn group-btn btn-outline-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+
+    //     $args = array(
+    //         'posts_per_page' => -1,
+    //         'post_type'      => 'person',
+    //         'post_status'    => 'publish',
+    //         'tax_query'      => array(
+    //             'relation' => 'AND',
+    //             array(
+    //                 'taxonomy' => 'category',
+    //                 'field'    => 'slug',
+    //                 'terms'    => 'core-faculty',
+    //             ),
+    //             array(
+    //                 'taxonomy' => 'people_group',
+    //                 'field'    => 'slug',
+    //                 'terms'    => $group,
+    //             ),
+    //         ),
+    //     );
+
+    //     $query = new WP_Query($args);
+
+    //     if ($query->have_posts()) {
+    //         while ($query->have_posts()) {
+    //             $query->the_post();
+    //             $permalink = get_permalink();
+    //             $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy']);
+    //             $job_title = get_field('person_jobtitle');
+
+    //             if ($inverse == '')
+    //                 echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+    //             else
+    //                 echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+
+    //             echo '<a href="' . esc_url($permalink) . '">';
+    //             echo '<div class="custom-card">';
+    //             echo '<div class="card-image">';
+    //             if (!empty($featured_image)) {
+    //                 echo $featured_image;
+    //             }
+    //             echo '</div>';
+    //             echo '<div class="card-body">';
+    //             echo '<h5 class="card-title">' . esc_html(get_the_title()) . '</h5>';
+    //             if (!empty($job_title)) {
+    //                 echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
+    //             }
+    //             echo '</div>';
+    //             echo '</div>';
+    //             echo '</a>';
+    //             echo '</div>';
+    //         }
+    //         wp_reset_postdata();
+    //     } else {
+    //         echo '<p></p>';
+    //     }
+    // } else {
+    //     echo '<p>Invalid group specified.</p>';
+    // }
 
     echo '</div>';
 
