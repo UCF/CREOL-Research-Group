@@ -102,38 +102,51 @@ function research_display($atts = [], $content = null, $tag = '')
             else
                 echo '<button class="btn group-btn btn-outline-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
-            $args = array(
-                'posts_per_page' => -1,
-                'post_type'      => 'person',
-                'post_status'    => 'publish',
-                'tax_query'      => array(
-                    'relation' => 'AND',
-                    array(
-                        'taxonomy' => 'category',
-                        'field'    => 'slug',
-                        'terms'    => 'core-faculty',
-                    ),
-                    array(
-                        'taxonomy' => 'people_group',
-                        'field'    => 'slug',
-                        'terms'    => $group,
-                    ),
-                ),
-            );
+            // Cache key based on group and section
+            $transient_key = 'research_group_' . esc_attr($group) . '_' . esc_attr($section);
+            $cached_posts = get_transient($transient_key);
 
-            $query = new WP_Query($args);
+            if (false === $cached_posts) {
+
+                $args = array(
+                    'posts_per_page' => -1,
+                    'post_type'      => 'person',
+                    'post_status'    => 'publish',
+                    'tax_query'      => array(
+                        'relation' => 'AND',
+                        array(
+                            'taxonomy' => 'category',
+                            'field'    => 'slug',
+                            'terms'    => 'core-faculty',
+                        ),
+                        array(
+                            'taxonomy' => 'people_group',
+                            'field'    => 'slug',
+                            'terms'    => $group,
+                        ),
+                    ),
+                );
+                $query = new WP_Query($args);
+                $cached_posts = $query->have_posts() ? $query->posts : [];
+
+                set_transient($transient_key, $cached_posts, HOUR_IN_SECONDS);
+
+                // Always reset post data after a query
+                wp_reset_postdata();
+            }
             
-            if ($query->have_posts()) {
-                while ($query->have_posts()) {
-                    $query->the_post();
-                    $permalink = get_permalink();
-                    $featured_image = get_the_post_thumbnail(get_the_ID(), 'medium', ['loading' => 'lazy']);
-                    $job_title = get_field('person_jobtitle');
+            if (!empty($cached_posts)) {
+                if ($inverse == '')
+                    echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                else
+                    echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';   
 
-                    if ($inverse == '')
-                        echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
-                    else
-                        echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';    
+                foreach ($cached_posts as $post) {
+                    setup_postdata($post); // This sets up the global post data for this iteration
+
+                    $permalink = get_permalink($post->ID); // Pass the post ID directly
+                    $featured_image = get_the_post_thumbnail($post->ID, 'medium', ['loading' => 'lazy']); // Get thumbnail with post ID
+                    $job_title = get_field('person_jobtitle', $post->ID); // Get ACF field with post ID 
 
                     echo '<a href="' . esc_url($permalink) . '">';
                     echo '<div class="custom-card">';
@@ -150,11 +163,13 @@ function research_display($atts = [], $content = null, $tag = '')
                     echo '</div>';
                     echo '</div>';
                     echo '</a>';
-                    echo '</div>';
                 }
+
+                echo '</div>';
+
                 wp_reset_postdata();
             } else {
-                echo '<p></p>';
+                echo '<p>No posts found for this group.</p>';
             }
 
         } else {
