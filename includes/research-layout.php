@@ -60,9 +60,6 @@ function research_display($atts = [], $content = null, $tag = '')
     ob_start();
 
     echo '<style>
-        .group-btn:not(.collapsed) {
-            margin-bottom: 16px; /* Larger margin when expanding/expanded */
-        }
         .custom-card {
             display: flex;
             width: 100%;
@@ -97,9 +94,9 @@ function research_display($atts = [], $content = null, $tag = '')
 
         if (isset($lab_names[$group])) {
             if ($inverse == '')
-                echo '<button class="btn group-btn btn-outline-i-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+                echo '<button class="btn group-btn btn-outline-i-primary btn-block collapsed mb-3" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
             else
-                echo '<button class="btn group-btn btn-outline-primary btn-block collapsed" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
+                echo '<button class="btn group-btn btn-outline-primary btn-block collapsed mb-3" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
             // Cache key based on group and section
             $transient_key = 'research_group_' . esc_attr($group) . '_' . esc_attr($section);
@@ -136,9 +133,9 @@ function research_display($atts = [], $content = null, $tag = '')
             
             if (!empty($cached_posts)) {
                 if ($inverse == '')
-                    echo '<div class="collapse bg-primary" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
+                    echo '<div class="collapse bg-primary mb-3" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';
                 else
-                    echo '<div class="collapse bg-faded" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';   
+                    echo '<div class="collapse bg-faded mb-3" id="' . esc_attr($group) . '-' . esc_attr($section) . '">';   
 
                 foreach ($cached_posts as $post) {
                     setup_postdata($post); // This sets up the global post data for this iteration
