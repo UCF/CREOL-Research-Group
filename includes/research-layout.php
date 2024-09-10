@@ -1,4 +1,3 @@
-<!-- research-layout.php -->
 <?php
 
 // These are pulled from WordPress -> People -> People Groups

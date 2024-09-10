@@ -1,4 +1,3 @@
-<!-- research.php -->
 <?php
 /*
 Plugin Name: Research Groups
