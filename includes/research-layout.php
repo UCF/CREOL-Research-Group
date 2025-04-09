@@ -31,6 +31,7 @@ $lab_names = [
     'OISL' => 'Optical Imaging System Laboratory',
     'SALEH' => 'Quantum Optics',
     'RANDOM' => 'Photonics Diagnostics of Random Media',
+    'NLQO' => 'Nonlinear and Quantum Optics'
 ];
 
 function research_display($atts = [], $content = null, $tag = '')
@@ -152,7 +153,7 @@ function research_display($atts = [], $content = null, $tag = '')
                     }
                     echo '</div>';
                     echo '<div class="card-body">';
-                    echo '<h5 class="card-title">' . esc_html(get_the_title()) . '</h5>';
+                    echo '<h5 class="card-title">' . esc_html(get_the_title($post->ID)) . '</h5>';
                     if (!empty($job_title)) {
                         echo '<div class="job-title"><i>' . esc_html($job_title) . '</i></div>';
                     }
