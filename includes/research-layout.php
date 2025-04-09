@@ -31,7 +31,7 @@ $lab_names = [
     'OISL' => 'Optical Imaging System Laboratory',
     'SALEH' => 'Quantum Optics',
     'RANDOM' => 'Photonics Diagnostics of Random Media',
-    'NLQO' => 'Nonlinear and Quantum Optics'
+    'NFD' => 'Nonlinear Fiber Dynamics'
 ];
 
 function research_display($atts = [], $content = null, $tag = '')
