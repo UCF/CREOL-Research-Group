@@ -1,6 +1,7 @@
 <?php
 
 // These are pulled from WordPress -> People -> People Groups
+// Array of manually inputted group names
 $lab_names = [
     'FOL' => 'Fiber Optics',
     'GPCL' => 'Glass Processing Lab',
@@ -34,6 +35,9 @@ $lab_names = [
     'NFD' => 'Nonlinear Fiber Dynamics'
 ];
 
+// Shortcode widget that fetches and displays people using group abbreviations 
+// Groups can be displayed in bulk and use inverse styling 
+// Cache is set every hour 
 function research_display($atts = [], $content = null, $tag = '')
 {
     global $lab_names;
@@ -50,11 +54,12 @@ function research_display($atts = [], $content = null, $tag = '')
         $tag
     );
 
+    // Each group have a number after it ( ex. "FOL 1") the number is the section or "unique ID"
     $arr = explode(" ", $wporg_atts['group']);
 
     $group = strtoupper($arr[0]);
     $section = $arr[1];
-    $inverse = $wporg_atts['inverse'];
+    $inverse = $wporg_atts['inverse']; // Styling
 
     $groups_and_sections = explode(',', $atts['group']);
 
@@ -99,10 +104,10 @@ function research_display($atts = [], $content = null, $tag = '')
             else
                 echo '<button class="btn group-btn btn-outline-primary btn-block collapsed mb-3" type="button" data-toggle="collapse" data-target="#' . esc_attr($group) . '-' . esc_attr($section) . '" aria-expanded="true" aria-controls="collapseExample">' . esc_html($lab_names[$group]) . '</button>';
 
-            // Cache key based on group and section
+            // Cache key based on group and section(makes faster)
             $transient_key = 'research_group_' . esc_attr($group) . '_' . esc_attr($section);
             $cached_posts = get_transient($transient_key);
-
+            // Fetch posts
             if (false === $cached_posts) {
 
                 $args = array(
@@ -126,6 +131,7 @@ function research_display($atts = [], $content = null, $tag = '')
                 $query = new WP_Query($args);
                 $cached_posts = $query->have_posts() ? $query->posts : [];
 
+                // Makes cache every hour
                 set_transient($transient_key, $cached_posts, HOUR_IN_SECONDS);
 
                 // Always reset post data after a query
