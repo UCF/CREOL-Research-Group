@@ -32,7 +32,8 @@ $lab_names = [
     'OISL' => 'Optical Imaging System Laboratory',
     'SALEH' => 'Quantum Optics',
     'RANDOM' => 'Photonics Diagnostics of Random Media',
-    'NFD' => 'Nonlinear Fiber Dynamics'
+    'NFD' => 'Nonlinear Fiber Dynamics',
+    'AHLR' => 'Advanced Holography and Laser Research'
 ];
 
 // Shortcode widget that fetches and displays people using group abbreviations 
