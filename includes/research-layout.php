@@ -14,7 +14,6 @@ $lab_names = [
     'LPL' => 'Laser Plasma Laboratory',
     'MOF' => 'Microstructured Fibers and Devices',
     'NLO' => 'Nonlinear Optics',
-    'PPL' => 'Photoinduced Processing',
     'ULP' => 'Ultrafast Laser Processing',
     'OFC' => 'Optical Fiber Communications',
     'MULTIOFD' => 'Multi-material Optical Fiber Devices',
